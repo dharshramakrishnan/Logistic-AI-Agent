@@ -1,0 +1,34 @@
+[
+  {
+    "shipment_id": "SHP001",
+    "tracking_history": [
+      "Picked Up",
+      "In Transit",
+      "Arrived Bangalore Hub",
+      "Out For Delivery",
+      "Delivery Failed"
+    ],
+    "email_content": "Driver reported incorrect address.",
+    "customer_complaint": "Package not received."
+  },
+  {
+    "shipment_id": "SHP002",
+    "tracking_history": [
+      "Picked Up",
+      "In Transit",
+      "Hub Delay"
+    ],
+    "email_content": "Heavy rainfall affecting transportation.",
+    "customer_complaint": "Shipment delayed."
+  },
+  {
+    "shipment_id": "SHP003",
+    "tracking_history": [
+      "Picked Up",
+      "Sorting Center",
+      "Damaged"
+    ],
+    "email_content": "Package damaged during handling.",
+    "customer_complaint": "Received damaged item."
+  }
+]

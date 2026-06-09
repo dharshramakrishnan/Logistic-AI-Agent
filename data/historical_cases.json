@@ -1,0 +1,22 @@
+[
+  {
+    "id": "CASE001",
+    "description": "Delivery failed because customer address was incorrect.",
+    "resolution": "Contact customer and verify address."
+  },
+  {
+    "id": "CASE002",
+    "description": "Shipment delayed due to severe weather conditions.",
+    "resolution": "Notify customer and adjust ETA."
+  },
+  {
+    "id": "CASE003",
+    "description": "Package damaged during sorting process.",
+    "resolution": "Initiate replacement shipment."
+  },
+  {
+    "id": "CASE004",
+    "description": "Vehicle breakdown caused delivery delay.",
+    "resolution": "Reassign shipment to another vehicle."
+  }
+]

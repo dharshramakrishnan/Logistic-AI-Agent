@@ -1,0 +1,189 @@
+Write a MongoDB aggregation query to list all students along with their department name using a join between students and departments.
+
+
+db.students.aggregate([ 
+{ 
+   $lookup : {
+  	from : "departments",
+	localField : "deptCode",
+	foreignField : "code",
+	as : "studentDep"
+	}
+   },
+   {
+      $unwind : "$studentDep" 
+   },
+   {
+      $project : {
+           studentName : "$name",
+	   studentDepartment : "$studentDep.name",
+	   _id : false
+	 }
+   }
+])
+
+
+Write a MongoDB aggregation query to:
+
+Join students with departments
+
+Group the students by department name
+
+Calculate the average percentage per department
+
+
+
+
+db.students.aggregate([
+  {
+    $lookup : {
+    from : "departments",
+    localField : "deptCode",
+    foreignField : "code",
+    as : "dummy"
+   },
+   {
+    $unwind : "$dummy"
+    },
+    {
+      $group : { _id : "$dummy.name", avePer : { $avg : "$percentage"}}
+     }
+])
+
+Join students with departments
+
+Filter students with percentage greater than 80
+
+Group them by department name
+
+Count how many top performers (percentage > 80) are in each department
+
+Sort the departments by that count in descending order
+
+{ "_id": "Computer Science", "topPerformers": 2 }  ==> output
+{ "_id": "Electronics", "topPerformers": 1 }  ==> output
+
+==> code
+
+db.students.aggregate([
+  {
+    $lookup: {
+      from: "departments",
+      localField: "deptCode",
+      foreignField: "code",
+      as: "temp"
+    }
+  },
+  {
+    $unwind: "$temp"
+  },
+  {
+    $match: {
+      percentage: { $gt: 80 }
+    }
+  },
+  {
+    $group: {
+      _id: "$temp.name",
+      topPerformers: { $sum: 1 }
+    }
+  },
+  {
+    $sort: {
+      topPerformers: -1
+    }
+  }
+])
+
+
+
+
+db.students.aggregate([
+ {
+    $lookup : {
+	from : "departments",
+	localField : "deptCode",
+	foreignField : "code",
+	as : "temp"
+     }
+ },
+ {
+    $unwind : "$temp"
+ },
+ {
+   $match : { percentage : { $gte : 60 } }
+ },
+ {
+   $group : { _id : "$temp.name",  totalStudents : { $sum : 1}, averagePercentage : { $avg : "$percentage"},
+passCount : {$sum : 1}
+ },
+ {
+   $project : {
+    departmentName : "temp.name",
+    totalStudents : true;
+    averagePercentage : true;
+    passCount : true;
+   }
+ }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
